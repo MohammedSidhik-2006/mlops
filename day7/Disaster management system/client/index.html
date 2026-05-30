@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS - Emergency Response System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🛡️ AEGIS</h1>
+                    <p>Emergency Response System</p>
+                </div>
+                <div class="status-bar">
+                    <span class="status-dot"></span>
+                    <span>System Active</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="section-title">
+                    <h2>Report Emergency</h2>
+                    <p>Describe the situation in your own words</p>
+                </div>
+
+                <form id="analyzer-form" class="input-form">
+                    <!-- Message Input -->
+                    <div class="form-field">
+                        <label for="message-input">What's happening?</label>
+                        <textarea id="message-input" placeholder="Example: We need food and water. Houses are flooded. Please help..." required></textarea>
+                        <div class="char-info">
+                            <span class="char-count">0 characters</span>
+                            <button type="button" class="clear-btn" id="clear-message">Clear</button>
+                        </div>
+                    </div>
+
+                    <!-- Location Input -->
+                    <div class="form-field">
+                        <label for="location-input">Where is this happening?</label>
+                        <input type="text" id="location-input" placeholder="City name or coordinates (optional)">
+                    </div>
+
+                    <!-- Quick Templates -->
+                    <div class="templates-section">
+                        <p class="templates-label">Quick examples:</p>
+                        <div class="template-buttons">
+                            <button type="button" class="template-btn" data-msg="Help, we are trapped on our roof due to rising flood waters. There are children with us and we need rescue immediately!" data-loc="Flood Zone">🌊 Flood</button>
+                            <button type="button" class="template-btn" data-msg="We need urgent medical assistance. We have run out of bandages and pain medicine." data-loc="Local Clinic">🏥 Medical</button>
+                            <button type="button" class="template-btn" data-msg="Earthquake collapsed buildings. We are searching for survivors. Send rescue teams." data-loc="Market Area">🧱 Earthquake</button>
+                            <button type="button" class="template-btn" data-msg="No drinking water or food left for the children. People are getting sick." data-loc="Camp">🍲 Food/Water</button>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span class="btn-text">Analyze Situation</span>
+                        <span class="spinner"></span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <!-- Empty State -->
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-icon">📋</div>
+                    <h3>Results will appear here</h3>
+                    <p>Enter an emergency report to see the analysis</p>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="results-panel hidden" id="results-panel">
+                    <!-- Priority Alert -->
+                    <div class="priority-alert" id="priority-alert">
+                        <div class="priority-header">
+                            <span class="priority-label">PRIORITY LEVEL</span>
+                            <span class="priority-value" id="priority-value">MEDIUM</span>
+                        </div>
+                        <p id="priority-message">This situation requires immediate attention</p>
+                    </div>
+
+                    <!-- Location Info -->
+                    <div class="info-box">
+                        <span class="info-label">📍 Location:</span>
+                        <span class="info-value" id="result-location">Unknown</span>
+                    </div>
+
+                    <!-- Detected Needs -->
+                    <div class="needs-box">
+                        <h4>🎯 Detected Needs</h4>
+                        <div class="needs-grid" id="categories-grid"></div>
+                    </div>
+
+                    <!-- Action Plan -->
+                    <div class="actions-box">
+                        <h4>✅ Action Plan</h4>
+                        <ul class="suggestions-list" id="suggestions-list"></ul>
+                    </div>
+
+                    <!-- Dispatch Button -->
+                    <button class="dispatch-btn" id="confirm-dispatch-btn">
+                        🚀 Send Dispatch Alert
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Activity Log Section -->
+        <section class="activity-section">
+            <div class="activity-header">
+                <h3>📊 Recent Incidents</h3>
+                <button class="clear-logs-btn" id="clear-logs">Clear</button>
+            </div>
+            <div class="activity-list" id="activity-list">
+                <p class="no-activity">No incidents logged yet</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toast-message"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

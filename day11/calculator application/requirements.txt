@@ -1,0 +1,5 @@
+# This project is a static web application (HTML/CSS/JS).
+# It does not require any external Python packages or dependencies to run.
+#
+# If you are using Python to serve the application locally (e.g., python -m http.server),
+# the built-in standard library is sufficient.
